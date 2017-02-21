@@ -40,7 +40,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @NamedQuery(name = "UserDetails.byId", query = "from UserDetails where userId=:userId")
 @NamedNativeQuery(name = "UserDetails.byName", query = "select * from USER_DETAILS where USER_NAME=:username",resultClass=UserDetails.class)
 //@org.hibernate.annotations.Entity(selectBeforeUpdate=true) if object has changes only update query will run
@@ -102,6 +102,7 @@ public class UserDetails {
 		this.description = description;
 	}
 	@ElementCollection(fetch=FetchType.EAGER)
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@CollectionTable(name="USER_CONTACTNO", joinColumns=@JoinColumn(name="USER_ID"))
 	@GenericGenerator(name = "hilo-gen", strategy = "hilo")
 	@CollectionId(columns = { @Column(name="CONTACTNO_ID") }, generator = "hilo-gen", type = @Type(type = "long"))

@@ -18,7 +18,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Inheritance(strategy=InheritanceType.JOINED)
 /*@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)*/
 /*@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
